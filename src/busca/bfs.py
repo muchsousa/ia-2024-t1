@@ -54,7 +54,6 @@ def bfs(graph, start: int, goal: int) -> (int, float, [int]):
             if (visited[neighbor] == 0):
 
                 if (neighbor == goal):
-                    count_visited = count_visited + 1
                     total_length = total_length # add cost here
                     path.append(neighbor)
 
