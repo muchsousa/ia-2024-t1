@@ -3,7 +3,7 @@
 import sys
 
 class Graph:
-    def __init__(self, isDirect=True):
+    def __init__(self, isDirect=False):
         self.vertices = {}
         self.adj = {}
         self.isDirect = isDirect

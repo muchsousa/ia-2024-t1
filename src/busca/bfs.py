@@ -35,20 +35,31 @@ def bfs(graph, start: int, goal: int) -> (int, float, [int]):
     for vertice in graph.getVertices():
         visited[vertice] = 0
 
+    visited[start] = 1 # visited
+
     while not queue.is_empty():
         u = queue.dequeue()
 
-        count_visited = count_visited + 1
         total_length = total_length # add cost here
         path.append(u)
 
         if (u == goal):
             return (count_visited, total_length, path)
+        
+        count_visited = count_visited + 1
 
         neighbors = graph.getNeighbors(u)
 
         for neighbor in neighbors.keys():
             if (visited[neighbor] == 0):
+
+                if (neighbor == goal):
+                    count_visited = count_visited + 1
+                    total_length = total_length # add cost here
+                    path.append(neighbor)
+
+                    return (count_visited, total_length, path)
+
                 visited[neighbor] = 1 # visited
                 queue.enqueue(neighbor)
 
