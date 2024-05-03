@@ -1,25 +1,26 @@
-"""Implementação da busca em profundidade."""
-
-from collections import deque
+# pylint:disable=duplicate-code
+"""Implementação da busca em largura."""
 
 class Queue:
+    """implementacao de fila"""
     def __init__(self):
         self.items = []
 
     def enqueue(self, item):
+        """adiciona um elemento na fila"""
         self.items.append(item)
 
     def dequeue(self):
+        """remove um elemento da fila"""
         return self.items.pop(0)
-    
-    def is_empty(self):
-        return len(self.items) == 0
-    
-    def purge(self):
-        self.items = [] 
 
-    def __str__(self):
-        return '({})'.format(self.items)
+    def is_empty(self):
+        """retorna se a pilha esta vazia ou nao"""
+        return len(self.items) == 0
+
+    def purge(self):
+        """limpa a fila"""
+        self.items = []
 
 
 def bfs(graph, start: int, goal: int) -> (int, float, [int]):
@@ -32,7 +33,7 @@ def bfs(graph, start: int, goal: int) -> (int, float, [int]):
     queue.enqueue(start)
 
     visited = {}
-    for vertice in graph.getVertices():
+    for vertice in graph.get_vertices():
         visited[vertice] = 0
 
     visited[start] = 1 # visited
@@ -40,21 +41,19 @@ def bfs(graph, start: int, goal: int) -> (int, float, [int]):
     while not queue.is_empty():
         u = queue.dequeue()
 
-        total_length = total_length # add cost here
         path.append(u)
 
-        if (u == goal):
+        if u == goal:
             return (count_visited, total_length, path)
-        
+
         count_visited = count_visited + 1
 
-        neighbors = graph.getNeighbors(u)
+        neighbors = graph.get_neighbors(u)
 
         for neighbor in neighbors.keys():
-            if (visited[neighbor] == 0):
+            if visited[neighbor] == 0:
 
-                if (neighbor == goal):
-                    total_length = total_length # add cost here
+                if neighbor == goal:
                     path.append(neighbor)
 
                     return (count_visited, total_length, path)
@@ -63,5 +62,3 @@ def bfs(graph, start: int, goal: int) -> (int, float, [int]):
                 queue.enqueue(neighbor)
 
     return None
-
-
