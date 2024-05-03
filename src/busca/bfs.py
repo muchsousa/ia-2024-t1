@@ -1,6 +1,7 @@
 # pylint:disable=duplicate-code
 """Implementação da busca em largura."""
 
+
 class Queue:
     """implementacao de fila"""
     def __init__(self):
@@ -36,7 +37,7 @@ def bfs(graph, start: int, goal: int) -> (int, float, [int]):
     for vertice in graph.get_vertices():
         visited[vertice] = 0
 
-    visited[start] = 1 # visited
+    visited[start] = 1  # visited
 
     while not queue.is_empty():
         u = queue.dequeue()
@@ -58,7 +59,7 @@ def bfs(graph, start: int, goal: int) -> (int, float, [int]):
 
                     return (count_visited, total_length, path)
 
-                visited[neighbor] = 1 # visited
+                visited[neighbor] = 1  # visited
                 queue.enqueue(neighbor)
 
     return None

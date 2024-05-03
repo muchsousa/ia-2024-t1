@@ -1,6 +1,7 @@
 # pylint:disable=duplicate-code
 """Implementação da busca em profundidade."""
 
+
 class Stack:
     """implementacao de pilha"""
     def __init__(self):
@@ -33,7 +34,7 @@ def dfs(graph, start: int, goal: int) -> (int, float, [int]):
     for vertice in graph.get_vertices():
         visited[vertice] = 0
 
-    visited[start] = 1 # visited
+    visited[start] = 1  # visited
 
     while not stack.is_empty():
         u = stack.pop()
@@ -54,7 +55,7 @@ def dfs(graph, start: int, goal: int) -> (int, float, [int]):
 
                     return (count_visited, total_length, path)
 
-                visited[neighbor] = 1 # visited
+                visited[neighbor] = 1  # visited
                 stack.push(neighbor)
 
     return None

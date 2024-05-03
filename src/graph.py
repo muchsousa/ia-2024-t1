@@ -1,5 +1,6 @@
 """Implementação de uma estrutura de grafo."""
 
+
 class Graph:
     """"grafo"""
     def __init__(self, is_direct=False):
@@ -34,6 +35,7 @@ class Graph:
         return self.adj[v]
 
 # ----------------------------------------------------------------
+
 
 def read_graph(filename: str):
     """Le uma estrutura de grafo de um arquivo e retorna a estrutura."""

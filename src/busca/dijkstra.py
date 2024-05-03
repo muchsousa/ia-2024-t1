@@ -1,10 +1,7 @@
 """Implementação do algoritmo de Dijkstra para o menor caminho em grafos."""
 
-# from heapq import heapify, heappush, heappop
-
-# from util import reverse_path
-
 import sys
+
 
 def dijkstra(graph, start: int, _goal: int) -> (int, float, [int]):
     """Busca em graph, um caminho entre start e goal usando Dijkstra."""
@@ -21,7 +18,6 @@ def dijkstra(graph, start: int, _goal: int) -> (int, float, [int]):
 
         return min_index
 
-
     length = len(graph)
 
     dist = {}
@@ -35,7 +31,7 @@ def dijkstra(graph, start: int, _goal: int) -> (int, float, [int]):
     for _i in range(length - 1):
         u = min_distance(dist, visited)
 
-        visited[u] = 1 # visited
+        visited[u] = 1  # visited
 
         for v in range(length):
             if (visited[v] == 0 and dist[u] != sys.maxsize):
