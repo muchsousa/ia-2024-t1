@@ -3,36 +3,49 @@
 import sys
 
 
-def dijkstra(graph, start: int, _goal: int) -> (int, float, [int]):
+def dijkstra(graph, start: int, goal: int) -> (int, float, [int]):
     """Busca em graph, um caminho entre start e goal usando Dijkstra."""
 
-    def min_distance(dist, visited):
-        min_value = sys.maxsize
-        min_index = -1
+    count_visited = 1
+    total_length = 0.0
+    path = []
 
-        length = len(dist)
-        for v in range(length):
-            if (visited[v] == 0 and dist[v] <= min_value):
-                min_value = dist[v]
-                min_index = v
-
-        return min_index
 
     length = len(graph)
 
-    dist = {}
+    distances = {}
     visited = {}
-    for vertice in graph.get_vertices():
-        visited[vertice] = 0
-        dist[vertice] = sys.maxsize
+    for v in graph.get_vertices():
+        visited[v] = 0
+        distances[v] = sys.maxsize
 
-    dist[start] = 0
+    distances[start] = 0
 
-    for _i in range(length - 1):
-        u = min_distance(dist, visited)
+    for _ in range(length - 1):
+        min_dist = sys.maxsize
+        u = None
+        for i in range(length - 1):
+            if (visited[i] == 0 and distances[i] <= min_dist):
+                min_dist = distances[i]
+                u = i
+
+        if u is None:
+            break
 
         visited[u] = 1  # visited
+        count_visited = count_visited + 1
 
-        for v in range(length):
-            if (visited[v] == 0 and dist[u] != sys.maxsize):
-                dist[v] = dist[u]
+        for v in range(length - 1):
+            if graph.adj[u][v] != 0 and visited[v] == 0:
+
+                alt = distances[u] + graph.adj[u][v]
+                if alt < distances[v]:
+                    distances[v] = alt
+
+                    count_visited = count_visited + 1
+                    path.append(v)
+
+                if (v == goal):
+                    return (count_visited, total_length, path)
+
+    return (0, 0.0, [])

@@ -58,4 +58,4 @@ def dfs(graph, start: int, goal: int) -> (int, float, [int]):
                 visited[neighbor] = 1  # visited
                 stack.push(neighbor)
 
-    return None
+    return (0, 0.0, [])

@@ -62,4 +62,4 @@ def bfs(graph, start: int, goal: int) -> (int, float, [int]):
                 visited[neighbor] = 1  # visited
                 queue.enqueue(neighbor)
 
-    return None
+    return (0, 0.0, [])
